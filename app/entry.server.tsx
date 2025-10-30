@@ -1,6 +1,7 @@
 import type { EntryContext } from 'react-router';
 import { ServerRouter } from 'react-router';
 import { renderToString } from 'react-dom/server';
+import { isbot } from 'isbot';
 
 export default function handleRequest(
   request: Request,
@@ -8,6 +9,9 @@ export default function handleRequest(
   responseHeaders: Headers,
   routerContext: EntryContext
 ) {
+  const userAgent = request.headers.get('user-agent');
+  const callbackName = isbot(userAgent || '') ? 'onAllReady' : 'onShellReady';
+
   const html = renderToString(
     <ServerRouter context={routerContext} url={request.url} />
   );
