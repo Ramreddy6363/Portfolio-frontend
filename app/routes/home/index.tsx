@@ -71,6 +71,7 @@ const HomePage = ({ loaderData }: Route.ComponentProps) => {
         <ProfileCard
           name="Ramreddy"
           title="Web Developer"
+          handle="Ramreddy6363"
           status="Online"
           contactText="Contact Me"
           avatarUrl="/images/profile.png"
