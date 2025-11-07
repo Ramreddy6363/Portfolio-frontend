@@ -29,7 +29,7 @@ const LatestPosts = ({ posts, limit = 3 }: LatestPostsProps) => {
         {latest.map((post) => (
           <Link
             key={post.slug}
-            to={`/blog/${post.slug}`}
+            to={`/blogs/${post.slug}`}
             className="group w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] min-w-[280px] max-w-[400px]"
           >
             <article className="relative h-full bg-gradient-to-br from-gray-800 via-gray-900 to-black border border-blue-500/20 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-1">

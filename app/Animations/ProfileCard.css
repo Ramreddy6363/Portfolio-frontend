@@ -134,10 +134,11 @@
   mask-position: top calc(200% - (var(--background-y) * 5)) left
     calc(100% - var(--background-x));
   transition: filter 0.8s ease;
-  filter: brightness(0.66) contrast(1.33) saturate(0.33) opacity(0.5);
-  animation: holo-bg 18s linear infinite;
-  animation-play-state: running;
-  mix-blend-mode: color-dodge;
+  filter: brightness(0.66) contrast(1.33) saturate(0.33) opacity(0);
+  animation: none;
+  animation-play-state: paused;
+  mix-blend-mode: normal;
+  display: none;
 }
 
 .pc-shine,
@@ -259,14 +260,11 @@
 .pc-glare {
   transform: translate3d(0, 0, 1.1px);
   overflow: hidden;
-  background-image: radial-gradient(
-    farthest-corner circle at var(--pointer-x) var(--pointer-y),
-    hsl(248, 25%, 80%) 12%,
-    hsla(207, 40%, 30%, 0.8) 90%
-  );
-  mix-blend-mode: overlay;
-  filter: brightness(0.8) contrast(1.2);
+  background-image: none;
+  mix-blend-mode: normal;
+  filter: none;
   z-index: 4;
+  display: none;
 }
 
 .pc-avatar-content {
@@ -277,10 +275,10 @@
 }
 
 .pc-avatar-content .avatar {
-  max-width: 150px;
-  max-height: 150px;
-  width: 150px;
-  height: 150px;
+  max-width: 220px;
+  max-height: 220px;
+  width: 220px;
+  height: 220px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -293,28 +291,28 @@
 
 @media (min-width: 640px) {
   .pc-avatar-content .avatar {
-    max-width: 180px;
-    max-height: 180px;
-    width: 180px;
-    height: 180px;
+    max-width: 240px;
+    max-height: 240px;
+    width: 240px;
+    height: 240px;
   }
 }
 
 @media (min-width: 768px) {
   .pc-avatar-content .avatar {
-    max-width: 220px;
-    max-height: 220px;
-    width: 220px;
-    height: 220px;
+    max-width: 260px;
+    max-height: 260px;
+    width: 260px;
+    height: 260px;
   }
 }
 
 @media (min-width: 1024px) {
   .pc-avatar-content .avatar {
-    max-width: 260px;
-    max-height: 260px;
-    width: 260px;
-    height: 260px;
+    max-width: 280px;
+    max-height: 280px;
+    width: 280px;
+    height: 280px;
   }
 }
 
