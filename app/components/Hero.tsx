@@ -1,65 +1,129 @@
 import { Link } from 'react-router';
-import SplitText from '../Animations/SplitText';
-import RotatingText from '~/Animations/RotatingText';
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import DarkVeil from '~/Animations/DarkVeil';
-const Hero = () => {
+import BlurText from '~/Animations/BlurText';
+import RotatingText from '~/Animations/RotatingText';
+
+type HeroProps = {
+  name?: string;
+  text?: string;
+};
+
+const Hero: React.FC<HeroProps> = ({}) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <header className="text-center py-10 px-5 bg-gray-800 text-white transition-colors duration-300 rounded-lg shadow-lg relative mb-4">
-      <DarkVeil
+    <header className="relative min-h-[30vh] sm:min-h-[35vh] md:min-h-[45vh] flex items-center justify-center text-white overflow-hidden">
+      {/* DarkVeil animated background wrapper */}
+      <div
         style={{
-          zIndex: 0,
           position: 'absolute',
           top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0, 
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '100vw',
+          height: '100%',
+          zIndex: 0,
         }}
-      />
-
-      <div className="relative z-10 mb-6 mx-auto">
-        <SplitText
-          text="Hi there, I'm Ram👋!"
-          className="text-4xl font-semibold text-center"
-          delay={100}
-          duration={0.6}
-          ease="power3.out"
-          splitType="chars"
-          from={{ opacity: 0, y: 40 }}
-          to={{ opacity: 1, y: 0 }}
-          threshold={0.1}
-          rootMargin="-100px"
-          textAlign="center"
-        />
+      >
+        {mounted ? (
+          <DarkVeil />
+        ) : (
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'transparent',
+            }}
+          />
+        )}
       </div>
 
-      <div className="relative z-10 flex items-center justify-center gap-3 mt-6">
-        <p className="text-2xl text-gray-100">I’m a</p>
-        <RotatingText
-          texts={['Web Developer', 'UI/UX Designer', 'Tech Explorer']}
-          mainClassName="inline-block bg-blue-800 text-white overflow-hidden py-2 px-5 rounded-lg text-xl font-semibold"
-          staggerFrom={'last'}
-          initial={{ y: '100%' }}
-          animate={{ y: 0 }}
-          exit={{ y: '-110%' }}
-          staggerDuration={0.025}
-          splitLevelClassName="overflow-hidden"
-          transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-          rotationInterval={2000}
-        />
-      </div>
-      <div className="relative z-10 flex items-center justify-center gap-4 mt-6">
-        <Link
-          to="/projects"
-          className="text-gray-100 bg-blue-500 py-2 px-6 hover:text-blue-400 transition-colors rounded duration-300"
-        >
-          Projects
-        </Link>
-        <Link
-          to="/contact"
-          className="text-gray-100 border border-blue-500 px-6 py-2 hover:text-blue-400 transition-colors duration-300 rounded"
-        >
-          Contact
-        </Link>
+      {/* Content with relative positioning to appear above DarkVeil */}
+      <div className="relative z-10 max-w-5xl mx-auto py-4 sm:py-6 md:py-4 px-4">
+        {mounted ? (
+          <div className="flex flex-col items-center justify-center space-y-6 text-center">
+            {/* Animated heading */}
+            <BlurText
+              text="Hi there, I'm Ram 👋!"
+              delay={250}
+              animateBy="words"
+              direction="bottom"
+              className="text-3xl sm:text-3xl md:text-4xl font-bold tracking-tight"
+            />
+
+            {/* Rotating text section */}
+            <div className="flex flex-wrap items-center justify-center gap-3 text-lg sm:text-xl md:text-2xl font-medium">
+              <span className="text-gray-200">I'm a</span>
+              <RotatingText
+                texts={['Web Developer', 'UI/UX Designer', 'Tech Enthusiast']}
+                mainClassName="px-3 sm:px-4 md:px-5 bg-gradient-to-r from-blue-500 via-blue-600 to-purple-600 text-white font-semibold overflow-hidden py-1.5 sm:py-2 md:py-2.5 rounded-xl shadow-lg"
+                staggerFrom={'last'}
+                initial={{ y: '100%' }}
+                animate={{ y: 0 }}
+                exit={{ y: '-120%' }}
+                staggerDuration={0.025}
+                splitLevelClassName="overflow-hidden"
+                transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+                rotationInterval={2000}
+              />
+            </div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              className="flex flex-wrap items-center justify-center gap-4 pt-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <Link
+                to="/projects"
+                className="group relative px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105"
+              >
+                <span className="relative z-10">View Projects</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </Link>
+              <Link
+                to="/contact"
+                className="px-5 py-2.5 border-2 border-blue-500 text-blue-400 font-semibold rounded-lg transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105"
+              >
+                Contact Me
+              </Link>
+            </motion.div>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center space-y-6 text-center">
+            {/* Fallback content for SSR */}
+            <h2 className="text-3xl sm:text-3xl md:text-4xl font-bold tracking-tight">
+              Hi there, I'm Ram 👋!
+            </h2>
+            <div className="flex flex-wrap items-center justify-center gap-3 text-lg sm:text-xl md:text-2xl font-medium">
+              <span className="text-gray-200">I'm a</span>
+              <span className="px-3 sm:px-4 md:px-5 bg-gradient-to-r from-blue-500 via-blue-600 to-purple-600 text-white font-semibold py-1.5 sm:py-2 md:py-2.5 rounded-xl shadow-lg">
+                Web Developer
+              </span>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <Link
+                to="/projects"
+                className="px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg"
+              >
+                View Projects
+              </Link>
+              <Link
+                to="/contact"
+                className="px-5 py-2.5 border-2 border-blue-500 text-blue-400 font-semibold rounded-lg"
+              >
+                Contact Me
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );

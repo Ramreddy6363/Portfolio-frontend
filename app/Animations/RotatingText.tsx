@@ -9,11 +9,11 @@ import React, {
 import {
   motion,
   AnimatePresence,
+  type Transition,
   type VariantLabels,
   type Target,
   type TargetAndTransition,
 } from 'framer-motion';
-import type { Transition } from 'framer-motion';
 
 function cn(...classes: (string | undefined | null | boolean)[]): string {
   return classes.filter(Boolean).join(' ');
@@ -126,7 +126,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
           return Math.abs(center - index) * staggerDuration;
         }
         if (staggerFrom === 'random') {
-          const randomIndex = Math.floor((total / 2) % total);
+          const randomIndex = Math.floor(Math.random() * total);
           return Math.abs(randomIndex - index) * staggerDuration;
         }
         return Math.abs((staggerFrom as number) - index) * staggerDuration;

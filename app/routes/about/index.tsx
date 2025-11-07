@@ -1,83 +1,147 @@
-import profileImage from '/images/pofile.png'; /* Updated path to new images folder */
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import Loader from '~/components/Loader';
-
-const AboutPage = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <Loader />;
-  }
-
+﻿const AboutPage = () => {
   return (
-    <>
-      <div className="max-w-4xl mx-auto px-6 py-16 bg-gradient-to-r from-gray-800 via-gray-900 to-black rounded-md">
-        <div className="flex flex-col md:flex-row md:items-start items-center gap-10 mb-12">
-          <motion.img
-            src={profileImage}
-            alt="Profile"
-            className="w-50 h-50 rounded-full object-cover border-4 border-blue-500"
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.3 }}
-          />
-          <div>
-            <h1 className="text-3xl font-bold text-blue-400">
-              Hi, This is Ram👋
-            </h1>
-            <p className="text-lg text-white mb-2">
-              I'm a passionate web developer with a knack for creating dynamic
-              and responsive web applications.
-            </p>
+    <div className="w-full min-h-screen">
+      <div className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-blue-950 to-black py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+              <div className="relative">
+                <img
+                  src="/images/profile.png"
+                  alt="Ram - Web Developer"
+                  className="w-64 h-64 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-blue-500 shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full p-4 shadow-xl">
+                  <span className="text-4xl">👨‍💻</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex-1 text-center lg:text-left">
+              <h1 className="text-5xl lg:text-6xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                  Hey, I am Ram
+                </span>
+                <span className="inline-block ml-2 animate-wave">👋</span>
+              </h1>
+              <p className="text-xl text-gray-300 leading-relaxed mb-6">
+                I am a passionate{' '}
+                <span className="text-blue-400 font-semibold">
+                  web developer
+                </span>{' '}
+                who loves building friendly digital experiences and helping
+                others grow into confident modern developers.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                <a
+                  href="/contact"
+                  className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg font-semibold hover:shadow-xl hover:shadow-blue-500/50 transform hover:-translate-y-1 transition-all duration-300"
+                >
+                  Get in Touch
+                </a>
+                <a
+                  href="#tech"
+                  className="px-6 py-3 bg-gray-800 border-2 border-blue-500 rounded-lg font-semibold hover:bg-gray-700 transform hover:-translate-y-1 transition-all duration-300"
+                >
+                  View Skills
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="mb-12">
-          <h2 className="text-2xl font-semibold text-white mb-4">My Mission</h2>
-          <p className="text-gray-300 leading-relaxed text-justify">
-            My mission is to leverage technology to build innovative solutions
-            that enhance user experiences and drive business growth. I strive to
-            stay at the forefront of web development trends and continuously
-            improve my skills to deliver high-quality projects.
+      </div>
+
+      {/* Mission Section */}
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-2xl p-8 lg:p-12 shadow-2xl border border-gray-800 hover:border-blue-500/50 transition-colors duration-500">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="text-4xl">🎯</span>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent">
+              My Mission
+            </h2>
+          </div>
+          <p className="text-gray-300 text-lg leading-relaxed mb-4">
+            After turning my life around, I made it my mission to share what I
+            have learned with others — not just about code, but about building a
+            life you are proud of.
+          </p>
+          <p className="text-gray-300 text-lg leading-relaxed">
+            Through <span className="text-blue-400">tutorials</span>,{' '}
+            <span className="text-cyan-400">courses</span>, and{' '}
+            <span className="text-blue-400">real-world projects</span>, I aim to
+            make development accessible, friendly, and something you look
+            forward to each day.
           </p>
         </div>
-        <h2 className="text-2xl font-semibold text-white mb-4">Tech I Use</h2>
-        <ul className="flex flex-wrap gap-4 text-sm text-gray-300">
+      </div>
+
+      {/* Tech Stack Section */}
+      <div id="tech" className="max-w-6xl mx-auto px-6 pb-16">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent">
+              🚀 Tech Stack
+            </span>
+          </h2>
+          <p className="text-gray-400">Technologies I work with daily</p>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {[
-            'JavaScript',
-            'TypeScript',
-            'React',
-            'Node.js',
-            'Express',
-            'MongoDB',
-            'GraphQL',
-            'Tailwind CSS',
-            'Git',
+            { name: 'HTML', icon: '🌐', color: 'from-orange-500 to-red-500' },
+            { name: 'CSS', icon: '🎨', color: 'from-blue-400 to-cyan-500' },
+            {
+              name: 'JavaScript',
+              icon: '⚡',
+              color: 'from-yellow-400 to-yellow-600',
+            },
+            {
+              name: 'Tailwind',
+              icon: '💨',
+              color: 'from-cyan-400 to-blue-500',
+            },
+            {
+              name: 'Node.js',
+              icon: '🟢',
+              color: 'from-green-500 to-lime-500',
+            },
+            {
+              name: 'TypeScript',
+              icon: '📘',
+              color: 'from-blue-500 to-blue-700',
+            },
+            { name: 'React', icon: '⚛️', color: 'from-blue-400 to-cyan-400' },
+            {
+              name: 'Express.js',
+              icon: '🚀',
+              color: 'from-gray-200 to-gray-400',
+            },
+            { name: 'SQL', icon: '🗄️', color: 'from-blue-500 to-indigo-500' },
+            {
+              name: 'MongoDB',
+              icon: '🍃',
+              color: 'from-green-500 to-teal-500',
+            },
           ].map((tech) => (
-            <motion.li
-              key={tech}
-              className="bg-gray-700 px-3 py-1 rounded-full hover:scale-110 transition-transform duration-200"
-              whileHover={{ scale: 1.2 }}
-              transition={{ duration: 0.2 }}
+            <div
+              key={tech.name}
+              className="group relative bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-xl p-6 border border-gray-800 hover:border-blue-500/50 transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
             >
-              {tech}
-            </motion.li>
+              <div className="relative text-center">
+                <div className="text-4xl mb-3 transform group-hover:scale-110 transition-transform duration-300">
+                  {tech.icon}
+                </div>
+                <h3
+                  className={`text-sm font-semibold bg-gradient-to-r ${tech.color} bg-clip-text text-transparent`}
+                >
+                  {tech.name}
+                </h3>
+              </div>
+            </div>
           ))}
-        </ul>
-        <div className="mt-12">
-          <h2 className="text-2xl font-semibold text-white mb-4">Fun Facts</h2>
-          <ul className="list-disc list-inside text-gray-300">
-            <li>I can code for 12 hours straight without coffee!</li>
-            <li>I once built a website in under 24 hours for a hackathon.</li>
-            <li>My favorite coding playlist includes lo-fi beats.</li>
-          </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

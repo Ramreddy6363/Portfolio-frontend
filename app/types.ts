@@ -3,7 +3,6 @@ export type Project = {
   documentId: string;
   title: string;
   description: string;
-  excerpt?: string;
   image: string;
   url: string;
   date: string;
@@ -13,17 +12,36 @@ export type Project = {
 
 export type Post = {
   id: string;
-  title: string;
   slug: string;
-  date: string;
+  title: string;
+  body: string;
   excerpt: string;
-  author: string;
+  date: string;
   image: string;
-  body?: string;
 };
 
 export type StrapiResponse<T> = {
   data: T[];
+};
+
+export type StrapiProject = {
+  id: string;
+  documentId: string;
+  title: string;
+  description: string;
+  image?: {
+    url: string;
+    formats?: {
+      thumbnail?: { url: string };
+      small?: { url: string };
+      medium?: { url: string };
+      large?: { url: string };
+    };
+  };
+  url: string;
+  date: string;
+  category: string;
+  featured: boolean;
 };
 
 export type StrapiPost = {
@@ -31,8 +49,8 @@ export type StrapiPost = {
   documentId: string;
   title: string;
   slug: string;
-  date: string;
   excerpt: string;
+  date: string;
   body: string;
   image?: {
     url: string;
@@ -43,25 +61,4 @@ export type StrapiPost = {
       large?: { url: string };
     };
   };
-};
-
-export type StrapiProject = {
-  id: string;
-  documentId: string;
-  title: string;
-  description: string;
-  excerpt?: string;
-  image?: {
-    url: string;
-    format?: {
-      thumbnail?: { url: string };
-      small?: { url: string };
-      medium?: { url: string };
-      large?: { url: string };
-    };
-  };
-  url: string;
-  date: string;
-  category: string;
-  featured: boolean;
 };

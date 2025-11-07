@@ -81,7 +81,6 @@ type Props = {
   scanlineFrequency?: number;
   warpAmount?: number;
   resolutionScale?: number;
-  style?: React.CSSProperties;
 };
 
 export default function DarkVeil({
@@ -92,7 +91,6 @@ export default function DarkVeil({
   scanlineFrequency = 0,
   warpAmount = 0,
   resolutionScale = 1,
-  style,
 }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -124,8 +122,10 @@ export default function DarkVeil({
     const mesh = new Mesh(gl, { geometry, program });
 
     const resize = () => {
-      const w = parent.clientWidth,
-        h = parent.clientHeight;
+      const w = window.innerWidth;
+      const h = parent.clientHeight;
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
       renderer.setSize(w * resolutionScale, h * resolutionScale);
       program.uniforms.uResolution.value.set(w, h);
     };
@@ -163,5 +163,19 @@ export default function DarkVeil({
     warpAmount,
     resolutionScale,
   ]);
-  return <canvas ref={ref} className="w-full h-full block" style={style} />;
+  return (
+    <canvas
+      ref={ref}
+      style={{
+        display: 'block',
+        width: '100vw',
+        height: '100%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        margin: 0,
+        padding: 0,
+      }}
+    />
+  );
 }
