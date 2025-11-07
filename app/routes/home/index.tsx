@@ -3,6 +3,7 @@ import ProfileCard from '~/Animations/ProfileCard';
 import LatestPosts from '~/components/LatestPosts';
 import RecentProjects from '~/components/RecentProjects';
 import Hero from '~/components/Hero';
+import { useNavigate } from 'react-router';
 import type {
   Project,
   StrapiPost,
@@ -64,6 +65,7 @@ export async function loader({
 
 const HomePage = ({ loaderData }: Route.ComponentProps) => {
   const { projects, posts } = loaderData;
+  const navigate = useNavigate();
 
   return (
     <>
@@ -78,6 +80,7 @@ const HomePage = ({ loaderData }: Route.ComponentProps) => {
           showUserInfo={true}
           enableTilt={true}
           enableMobileTilt={false}
+          onContactClick={() => navigate('/contact')}
         />
       </div>
       <RecentProjects projects={projects} limit={3} />
