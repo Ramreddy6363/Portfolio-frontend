@@ -7,7 +7,7 @@ import PostFilter from '~/components/PostFilter';
 
 export function meta() {
   return [
-    { title: 'The Friendly Dev | Blog' },
+    { title: 'PixelCrafted | Blog' },
     { name: 'description', content: 'Read my latest blog posts and articles' },
   ];
 }

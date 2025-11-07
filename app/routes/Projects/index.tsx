@@ -6,7 +6,7 @@ import Pagination from '~/components/Pagination';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'The Friendly Dev | Projects' },
+    { title: 'PixelCrafted | Projects' },
     { name: 'description', content: 'My website project portfolio' },
   ];
 }
