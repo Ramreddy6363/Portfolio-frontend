@@ -115,91 +115,86 @@ const Navbar = () => {
         <div className="md:hidden flex items-center">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="relative p-2 text-blue-400 text-2xl hover:text-blue-300 transition-colors duration-300"
-            title="Menu"
+            className="p-2 text-blue-400 text-2xl hover:text-white transition-colors"
+            aria-label="Menu"
           >
-            <span className="absolute inset-0 bg-blue-500/20 rounded-lg scale-0 hover:scale-100 transition-transform duration-300"></span>
-            <span className="relative z-10">
-              {menuOpen ? <FaTimes /> : <FaBars />}
-            </span>
+            {menuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Nav with slide animation */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          menuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div className="bg-gradient-to-b from-blue-950 to-black border-t border-blue-400/30 px-6 py-4 space-y-1">
-          <NavLink
-            className={({ isActive }) =>
-              `block px-4 py-3 rounded-lg text-gray-300 font-medium transition-all duration-300 ${
-                isActive
-                  ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg shadow-blue-600/40'
-                  : 'hover:bg-blue-900/30 hover:text-white hover:pl-6'
-              }`
-            }
-            to="/"
-            onClick={() => setMenuOpen(false)}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              `block px-4 py-3 rounded-lg text-gray-300 font-medium transition-all duration-300 ${
-                isActive
-                  ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg shadow-blue-600/40'
-                  : 'hover:bg-blue-900/30 hover:text-white hover:pl-6'
-              }`
-            }
-            to="/projects"
-            onClick={() => setMenuOpen(false)}
-          >
-            Projects
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              `block px-4 py-3 rounded-lg text-gray-300 font-medium transition-all duration-300 ${
-                isActive
-                  ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg shadow-blue-600/40'
-                  : 'hover:bg-blue-900/30 hover:text-white hover:pl-6'
-              }`
-            }
-            to="/blogs"
-            onClick={() => setMenuOpen(false)}
-          >
-            Blogs
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              `block px-4 py-3 rounded-lg text-gray-300 font-medium transition-all duration-300 ${
-                isActive
-                  ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg shadow-blue-600/40'
-                  : 'hover:bg-blue-900/30 hover:text-white hover:pl-6'
-              }`
-            }
-            to="/about"
-            onClick={() => setMenuOpen(false)}
-          >
-            About
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              `block px-4 py-3 rounded-lg text-gray-300 font-medium transition-all duration-300 ${
-                isActive
-                  ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg shadow-blue-600/40'
-                  : 'hover:bg-blue-900/30 hover:text-white hover:pl-6'
-              }`
-            }
-            to="/contact"
-            onClick={() => setMenuOpen(false)}
-          >
-            Contact
-          </NavLink>
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-gray-900/95 backdrop-blur-lg border-t border-gray-800">
+          <div className="px-2 py-2 flex gap-1 justify-between">
+            <NavLink
+              className={({ isActive }) =>
+                `flex-1 text-center px-2 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${
+                  isActive
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                }`
+              }
+              to="/"
+              onClick={() => setMenuOpen(false)}
+            >
+              Home
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                `flex-1 text-center px-2 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${
+                  isActive
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                }`
+              }
+              to="/projects"
+              onClick={() => setMenuOpen(false)}
+            >
+              Projects
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                `flex-1 text-center px-2 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${
+                  isActive
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                }`
+              }
+              to="/blogs"
+              onClick={() => setMenuOpen(false)}
+            >
+              Blog
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                `flex-1 text-center px-2 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${
+                  isActive
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                }`
+              }
+              to="/about"
+              onClick={() => setMenuOpen(false)}
+            >
+              About
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                `flex-1 text-center px-2 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${
+                  isActive
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                }`
+              }
+              to="/contact"
+              onClick={() => setMenuOpen(false)}
+            >
+              Contact
+            </NavLink>
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };
