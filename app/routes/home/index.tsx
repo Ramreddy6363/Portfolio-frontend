@@ -13,7 +13,7 @@ import type { Post } from '~/types';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'The Friendly Dev | Welcome' },
+    { title: 'PixelCrafted | Welcome' },
     { name: 'description', content: 'Custom website development' },
   ];
 }
