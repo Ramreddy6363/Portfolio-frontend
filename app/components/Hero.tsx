@@ -102,12 +102,15 @@ const Hero: React.FC<HeroProps> = ({}) => {
                 <span className="relative z-10">View Projects</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Link>
-              <Link
-                to="/contact"
-                className="px-5 py-2.5 border-2 border-blue-500 text-blue-400 font-semibold rounded-lg transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105"
+              <a
+                href="/Ramreddy_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 border-2 border-blue-500 text-blue-400 font-semibold rounded-lg transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105"
               >
-                Contact Me
-              </Link>
+                <span>📄</span>
+                <span>Resume</span>
+              </a>
             </motion.div>
           </div>
         ) : (
@@ -129,12 +132,15 @@ const Hero: React.FC<HeroProps> = ({}) => {
               >
                 View Projects
               </Link>
-              <Link
-                to="/contact"
-                className="px-5 py-2.5 border-2 border-blue-500 text-blue-400 font-semibold rounded-lg"
+              <a
+                href="/Ramreddy_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 border-2 border-blue-500 text-blue-400 font-semibold rounded-lg"
               >
-                Contact Me
-              </Link>
+                <span>📄</span>
+                <span>Resume</span>
+              </a>
             </div>
           </div>
         )}
