@@ -69,7 +69,7 @@ const AboutPage = () => {
                 <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
                   Hey, I am Ram
                 </span>
-                <span className="inline-block ml-2 animate-wave">??</span>
+                <span className="inline-block ml-2 animate-wave">👋!</span>
               </h1>
               <p className="text-xl text-gray-300 leading-relaxed mb-6">
                 I am a passionate{' '}
