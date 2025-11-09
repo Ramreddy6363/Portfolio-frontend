@@ -2,6 +2,63 @@
 import type { Post, StrapiPost } from '~/types';
 import { Link } from 'react-router';
 
+export function meta({ data }: { data: { post: Post | null } }) {
+  if (!data || !data.post) {
+    return [
+      { title: 'Post Not Found | Ram Reddy Blog' },
+      { name: 'robots', content: 'noindex' },
+    ];
+  }
+
+  const { post } = data;
+  const postUrl = `https://www.pixcelcraftedbyram.tech/blogs/${post.slug}`;
+
+  return [
+    { title: `${post.title} | Ram Reddy Blog` },
+    {
+      name: 'description',
+      content:
+        post.excerpt ||
+        `Read ${post.title} on Ram Reddy's web development blog.`,
+    },
+    {
+      name: 'keywords',
+      content:
+        'web development, React, JavaScript, programming tutorial, coding tips, tech blog',
+    },
+    { name: 'author', content: 'Ram Reddy' },
+    { name: 'article:published_time', content: post.date },
+
+    // Open Graph
+    { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: postUrl },
+    { property: 'og:title', content: post.title },
+    {
+      property: 'og:description',
+      content: post.excerpt || `Read ${post.title} on Ram Reddy's blog.`,
+    },
+    {
+      property: 'og:image',
+      content: post.image || 'https://www.pixcelcraftedbyram.tech/images/profile.png',
+    },
+    { property: 'article:author', content: 'Ram Reddy' },
+
+    // Twitter
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:url', content: postUrl },
+    { name: 'twitter:title', content: post.title },
+    { name: 'twitter:description', content: post.excerpt || '' },
+    {
+      name: 'twitter:image',
+      content: post.image || 'https://www.pixcelcraftedbyram.tech/images/profile.png',
+    },
+    { name: 'twitter:creator', content: '@Ramreddy6363' },
+
+    // Additional SEO
+    { name: 'robots', content: 'index, follow' },
+  ];
+}
+
 export async function loader({
   params,
 }: {

@@ -7,8 +7,42 @@ import PostFilter from '~/components/PostFilter';
 
 export function meta() {
   return [
-    { title: 'PixelCrafted | Blog' },
-    { name: 'description', content: 'Read my latest blog posts and articles' },
+    { title: 'Web Development Blog | Tutorials & Tips by Ram Reddy' },
+    {
+      name: 'description',
+      content:
+        'Read insightful articles about web development, React, JavaScript, and modern web technologies. Learn tips, best practices, and tutorials from a professional developer.',
+    },
+    {
+      name: 'keywords',
+      content:
+        'web development blog, React tutorials, JavaScript tips, programming articles, coding blog, web dev best practices, tech blog',
+    },
+
+    // Open Graph
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://www.pixcelcraftedbyram.tech/blogs' },
+    { property: 'og:title', content: 'Web Development Blog | Ram Reddy' },
+    {
+      property: 'og:description',
+      content:
+        'Read insightful articles about web development, React, JavaScript, and modern web technologies.',
+    },
+    {
+      property: 'og:image',
+      content: 'https://www.pixcelcraftedbyram.tech/images/profile.png',
+    },
+
+    // Twitter
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Web Development Blog' },
+    {
+      name: 'twitter:description',
+      content: 'Tutorials, tips, and insights about modern web development.',
+    },
+
+    // Additional SEO
+    { name: 'robots', content: 'index, follow' },
   ];
 }
 

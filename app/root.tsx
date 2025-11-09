@@ -27,8 +27,10 @@ export const links: Route.LinksFunction = () => [
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'PixeCraftedbyRam' },
-    { name: 'PixeCraftedbyRam', content: 'Welcome to PixeCraftedbyRam!' },
+    { title: 'Ram Reddy - Full Stack Web Developer | React & Node.js' },
+    { name: 'description', content: 'Professional full-stack web developer specializing in React, Node.js, and modern web technologies.' },
+    { charset: 'utf-8' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
   ];
 }
 

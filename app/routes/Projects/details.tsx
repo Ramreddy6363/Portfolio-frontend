@@ -4,9 +4,39 @@ import { Link } from 'react-router';
 
 export function meta({ data }: Route.MetaArgs) {
   const project = data?.project;
+  
+  if (!project) {
+    return [
+      { title: 'Project Not Found | Ram Reddy Portfolio' },
+      { name: 'robots', content: 'noindex' },
+    ];
+  }
+
+  const projectUrl = `https://www.pixcelcraftedbyram.tech/projects/${project.documentId}`;
+  
   return [
-    { title: `${project?.title || 'Project'} | The Friendly Dev` },
-    { name: 'description', content: project?.description || 'Project details' },
+    { title: `${project.title} - Web Development Project | Ram Reddy` },
+    { name: 'description', content: project.description || `Explore ${project.title}, a web development project by Ram Reddy.` },
+    { name: 'keywords', content: `${project.category || 'web development'}, React project, portfolio, ${project.title}` },
+    { name: 'author', content: 'Ram Reddy' },
+    
+    // Open Graph
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: projectUrl },
+    { property: 'og:title', content: `${project.title} - Web Development Project` },
+    { property: 'og:description', content: project.description || '' },
+    { property: 'og:image', content: project.image || 'https://www.pixcelcraftedbyram.tech/images/profile.png' },
+    
+    // Twitter
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:url', content: projectUrl },
+    { name: 'twitter:title', content: project.title },
+    { name: 'twitter:description', content: project.description || '' },
+    { name: 'twitter:image', content: project.image || 'https://www.pixcelcraftedbyram.tech/images/profile.png' },
+    { name: 'twitter:creator', content: '@Ramreddy6363' },
+    
+    // Additional SEO
+    { name: 'robots', content: 'index, follow' },
   ];
 }
 

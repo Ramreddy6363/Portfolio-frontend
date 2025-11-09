@@ -1,5 +1,46 @@
 import type { Route } from './+types';
 
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: 'Contact Ram Reddy - Hire Web Developer | Get in Touch' },
+    {
+      name: 'description',
+      content:
+        'Get in touch with Ram Reddy for web development services, project collaborations, or freelance opportunities. Available for React, Node.js, and full-stack development projects.',
+    },
+    {
+      name: 'keywords',
+      content:
+        'contact web developer, hire React developer, freelance web developer, web development services, project collaboration, get in touch',
+    },
+
+    // Open Graph
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://www.pixcelcraftedbyram.tech/contact' },
+    { property: 'og:title', content: 'Contact Ram Reddy - Web Developer' },
+    {
+      property: 'og:description',
+      content:
+        'Get in touch for web development services, project collaborations, or freelance opportunities.',
+    },
+    {
+      property: 'og:image',
+      content: 'https://www.pixcelcraftedbyram.tech/images/profile.png',
+    },
+
+    // Twitter
+    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:title', content: 'Contact Ram Reddy' },
+    {
+      name: 'twitter:description',
+      content: 'Get in touch for web development services and collaborations.',
+    },
+
+    // Additional SEO
+    { name: 'robots', content: 'index, follow' },
+  ];
+}
+
 // export async function action({ request }: Route.ActionArgs) {
 //   const formData = await request.formData();
 //   const name = formData.get('name') as string;

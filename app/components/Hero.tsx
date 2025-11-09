@@ -1,9 +1,11 @@
 import { Link } from 'react-router';
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import DarkVeil from '~/Animations/DarkVeil';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import BlurText from '~/Animations/BlurText';
 import RotatingText from '~/Animations/RotatingText';
+
+// Lazy load the heavy WebGL component
+const DarkVeil = lazy(() => import('~/Animations/DarkVeil'));
 
 type HeroProps = {
   name?: string;
@@ -32,7 +34,19 @@ const Hero: React.FC<HeroProps> = ({}) => {
         }}
       >
         {mounted ? (
-          <DarkVeil />
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: 'transparent',
+                }}
+              />
+            }
+          >
+            <DarkVeil />
+          </Suspense>
         ) : (
           <div
             style={{

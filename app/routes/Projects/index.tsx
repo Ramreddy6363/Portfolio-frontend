@@ -6,8 +6,46 @@ import Pagination from '~/components/Pagination';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'PixelCrafted | Projects' },
-    { name: 'description', content: 'My website project portfolio' },
+    { title: 'Web Development Projects Portfolio | Ram Reddy' },
+    {
+      name: 'description',
+      content:
+        'Explore my portfolio of web development projects featuring React applications, full-stack websites, and modern web solutions. See real examples of my work and technical expertise.',
+    },
+    {
+      name: 'keywords',
+      content:
+        'web development projects, React projects, portfolio, web applications, frontend projects, full stack projects, JavaScript projects',
+    },
+
+    // Open Graph
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://www.pixcelcraftedbyram.tech/projects' },
+    {
+      property: 'og:title',
+      content: 'Web Development Projects Portfolio | Ram Reddy',
+    },
+    {
+      property: 'og:description',
+      content:
+        'Explore my portfolio of web development projects featuring React applications, full-stack websites, and modern web solutions.',
+    },
+    {
+      property: 'og:image',
+      content: 'https://www.pixcelcraftedbyram.tech/images/profile.png',
+    },
+
+    // Twitter
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Web Development Projects Portfolio' },
+    {
+      name: 'twitter:description',
+      content:
+        'Explore my portfolio of web development projects and technical expertise.',
+    },
+
+    // Additional SEO
+    { name: 'robots', content: 'index, follow' },
   ];
 }
 
