@@ -28,7 +28,11 @@ export const links: Route.LinksFunction = () => [
 export function meta({}: Route.MetaArgs) {
   return [
     { title: 'Ram Reddy - Full Stack Web Developer | React & Node.js' },
-    { name: 'description', content: 'Professional full-stack web developer specializing in React, Node.js, and modern web technologies.' },
+    {
+      name: 'description',
+      content:
+        'Professional full-stack web developer specializing in React, Node.js, and modern web technologies.',
+    },
     { charset: 'utf-8' },
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
   ];
@@ -40,6 +44,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head suppressHydrationWarning>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <Meta />
         <Links />
       </head>

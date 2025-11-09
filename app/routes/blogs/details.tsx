@@ -39,7 +39,8 @@ export function meta({ data }: { data: { post: Post | null } }) {
     },
     {
       property: 'og:image',
-      content: post.image || 'https://www.pixcelcraftedbyram.tech/images/profile.png',
+      content:
+        post.image || 'https://www.pixcelcraftedbyram.tech/images/profile.png',
     },
     { property: 'article:author', content: 'Ram Reddy' },
 
@@ -50,7 +51,8 @@ export function meta({ data }: { data: { post: Post | null } }) {
     { name: 'twitter:description', content: post.excerpt || '' },
     {
       name: 'twitter:image',
-      content: post.image || 'https://www.pixcelcraftedbyram.tech/images/profile.png',
+      content:
+        post.image || 'https://www.pixcelcraftedbyram.tech/images/profile.png',
     },
     { name: 'twitter:creator', content: '@Ramreddy6363' },
 
