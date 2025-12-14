@@ -153,11 +153,8 @@ const Hero = () => {
             <div className="absolute inset-x-0 top-0 h-[200px] opacity-30 mix-blend-overlay bg-gradient-to-b from-blue-400 to-transparent"></div>
         </div>
 
-        {/* ATMOSPHERE HAZE (Outer Glow rising into space) */}
-        <div className="absolute bottom-0 left-0 right-0 h-[25vh] bg-blue-900/30 blur-[60px] pointer-events-none z-0 mix-blend-screen"></div>
-        
-        {/* HORIZON LIGHT SCATTER (The 'Sunrise' edge effect) */}
-        <div className="absolute bottom-[-5vh] left-[20%] right-[20%] h-[15vh] bg-cyan-500/20 blur-[80px] rounded-full mix-blend-screen pointer-events-none"></div>
+        {/* REMOVED ATMOSPHERE HAZE & SCATTER TO FIX SQUARE ARTIFACTS ON MOBILE */}
+        <div className="absolute bottom-[-10vh] left-[10%] right-[10%] h-[20vh] bg-cyan-500/10 blur-[100px] rounded-full mix-blend-screen pointer-events-none"></div>
 
         {/* CRISP VIGNETTE */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000_150%)] opacity-50 pointer-events-none z-20"></div>
