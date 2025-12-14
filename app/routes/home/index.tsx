@@ -1,9 +1,9 @@
 import type { Route } from './+types/index';
-import { lazy, Suspense } from 'react';
+import { useNavigate } from 'react-router';
 import LatestPosts from '~/components/LatestPosts';
 import RecentProjects from '~/components/RecentProjects';
 import Hero from '~/components/Hero';
-import { useNavigate } from 'react-router';
+import BentoGrid from '~/components/BentoGrid';
 import type {
   Project,
   StrapiPost,
@@ -11,9 +11,6 @@ import type {
   StrapiResponse,
 } from '~/types';
 import type { Post } from '~/types';
-
-// Lazy load heavy animation component
-const ProfileCard = lazy(() => import('~/Animations/ProfileCard'));
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -69,8 +66,6 @@ export function meta({}: Route.MetaArgs) {
 export async function loader({
   request,
 }: Route.LoaderArgs): Promise<{ projects: Project[]; posts: Post[] }> {
-  const url = new URL(request.url);
-
   const [projectRes, postRes] = await Promise.all([
     fetch(
       `${import.meta.env.VITE_API_URL}/projects?pagination[limit]=3&sort[0]=date:desc&fields[0]=title&fields[1]=description&fields[2]=date&fields[3]=category&fields[4]=featured&fields[5]=url&populate[image][fields][0]=url`
@@ -117,30 +112,42 @@ const HomePage = ({ loaderData }: Route.ComponentProps) => {
   const navigate = useNavigate();
 
   return (
-    <>
-      <div className="flex justify-center items-center my-8">
-        <Suspense
-          fallback={
-            <div className="h-96 w-full max-w-md animate-pulse bg-gray-800 rounded-2xl" />
-          }
-        >
-          <ProfileCard
-            name="Ramreddy"
-            title="Web Developer"
-            handle="Ramreddy6363"
-            status="Online"
-            contactText="Contact Me"
-            avatarUrl="/images/profile.png"
-            showUserInfo={true}
-            enableTilt={true}
-            enableMobileTilt={false}
-            onContactClick={() => navigate('/contact')}
-          />
-        </Suspense>
-      </div>
-      <RecentProjects projects={projects} limit={3} />
-      <LatestPosts posts={posts} />
-    </>
+    <div className="min-h-screen bg-gray-950">
+      {/* Hero Section */}
+      <Hero />
+
+      {/* Main Content */}
+      <main className="relative z-10 space-y-8 md:space-y-12 pb-24">
+        
+        {/* Bento Grid (About / Socials / Stats) */}
+        <BentoGrid />
+
+        {/* Selected Works */}
+        <div className="max-w-7xl mx-auto px-6">
+             <RecentProjects projects={projects} limit={3} />
+        </div>
+
+        {/* Latest Thoughts */}
+        <div className="max-w-7xl mx-auto px-6 border-t border-white/5 pt-24">
+             <LatestPosts posts={posts} />
+        </div>
+
+        {/* Minimal Footer CTA */}
+        <section className="max-w-4xl mx-auto px-6 text-center py-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Let's build something great.</h2>
+          <p className="text-gray-400 mb-8 text-lg">
+             I'm currently available for freelance projects and open to new opportunities.
+          </p>
+          <button
+              onClick={() => navigate('/contact')}
+              className="px-8 py-4 bg-white text-gray-950 rounded-full font-bold hover:bg-gray-200 transition-all hover:scale-105"
+            >
+              Start a Project
+            </button>
+        </section>
+
+      </main>
+    </div>
   );
 };
 

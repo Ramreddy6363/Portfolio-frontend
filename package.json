@@ -6,19 +6,15 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc",
-    "json-server": "json-server data/db.json --port 8000"
+    "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
     "@react-router/node": "^7.5.3",
     "@react-router/serve": "^7.5.3",
-    "framer-motion": "^12.16.0",
     "isbot": "^5.1.27",
-    "ogl": "^1.0.11",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
-    "react-markdown": "^10.1.0",
     "react-router": "^7.5.3"
   },
   "devDependencies": {
@@ -28,11 +24,9 @@
     "@types/node": "^20",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "json-server": "^1.0.0-beta.3",
     "tailwindcss": "^4.1.4",
     "typescript": "^5.8.3",
     "vite": "^6.3.3",
-    "vite-plugin-devtools-json": "^0.1.0",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }

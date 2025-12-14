@@ -1,6 +1,5 @@
 import { Link } from 'react-router';
 import type { Project } from '~/types';
-import ProjectCard from './ProjectCard';
 
 interface RecentProjectsProps {
   projects: Project[];
@@ -8,43 +7,120 @@ interface RecentProjectsProps {
 }
 
 const RecentProjects = ({ projects, limit = 3 }: RecentProjectsProps) => {
-  // Sort projects by date in descending order (most recent first)
   const sortedProjects = [...projects].sort((a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   });
 
-  // Get the most recent projects based on the limit
   const recentProjects = sortedProjects.slice(0, limit);
 
   if (recentProjects.length === 0) {
     return (
       <section className="my-12">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold text-white">Recent Projects</h2>
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-white mb-2">Recent Projects</h2>
+          <p className="text-sm text-gray-500">No projects available yet.</p>
         </div>
-        <p className="text-gray-400 text-center py-8">
-          No projects available yet.
-        </p>
       </section>
     );
   }
 
   return (
-    <section className="my-12 flex flex-col items-center">
-      <div className="flex flex-col items-center mb-6 w-full px-4">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent text-center">
-          Recent Projects
-        </h2>
-      </div>
-      <div className="flex flex-wrap justify-center gap-6 max-w-7xl px-4">
-        {recentProjects.map((project) => (
-          <div
-            key={project.id}
-            className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] min-w-[280px] max-w-[400px]"
-          >
-            <ProjectCard project={project} />
+    <section className="my-12">
+      {/* Section header - minimal and modern */}
+      <div className="mb-10">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <span className="inline-block px-2.5 py-1 bg-blue-500/10 border border-blue-500/20 rounded text-xs font-semibold text-blue-400 mb-3">
+              SELECTED WORKS
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Recent Projects
+            </h2>
           </div>
+          <Link
+            to="/projects"
+            className="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-gray-400 hover:text-white transition-colors duration-300 group"
+          >
+            View all
+            <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
+      </div>
+
+      {/* Projects grid - modern cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {recentProjects.map((project, index) => (
+          <Link
+            key={project.id}
+            to={`/projects/${project.documentId}`}
+            className="group block animate-fade-in"
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            <article className="relative h-full bg-gray-900/50 backdrop-blur-sm rounded-xl overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500 hover:-translate-y-1">
+              {/* Image */}
+              <div className="relative overflow-hidden aspect-[16/10]">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
+                
+                {/* Category badge */}
+                <div className="absolute top-3 left-3 px-2.5 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded text-xs font-semibold text-white">
+                  {project.category}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-5 space-y-3">
+                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors duration-300 line-clamp-1">
+                  {project.title}
+                </h3>
+                
+                <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed">
+                  {project.description}
+                </p>
+
+                {/* Footer */}
+                <div className="flex items-center justify-between pt-3 border-t border-white/5">
+                  <span className="text-xs text-gray-600">
+                    {new Date(project.date).toLocaleDateString('en-US', { 
+                      month: 'short', 
+                      year: 'numeric' 
+                    })}
+                  </span>
+                  
+                  <span className="flex items-center gap-1.5 text-xs font-medium text-blue-400 group-hover:gap-2.5 transition-all duration-300">
+                    View
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </article>
+          </Link>
         ))}
+      </div>
+
+      {/* Mobile view all button */}
+      <div className="mt-8 md:hidden text-center">
+        <Link
+          to="/projects"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 border border-white/10 text-white text-sm font-semibold rounded-lg hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+        >
+          View All Projects
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </Link>
       </div>
     </section>
   );
